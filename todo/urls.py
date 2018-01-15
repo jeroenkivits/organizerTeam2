@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'logout', auth_views.logout, name='logout'),
     url(r'signup', views.signup, name='signup'),
     url(r'about', views.about, name='about'),
+    url(r'video', views.video, name='video'),
 ]

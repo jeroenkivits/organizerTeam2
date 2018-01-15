@@ -235,10 +235,13 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request)
-            return render(request, 'todo/index.html')
+            return render(request, 'todo/startpage.html')
     else:
         form = UserCreationForm()
     return render(request, 'todo/signup.html', {'form': form})
+
+def video(request):
+    return render(request, 'todo/video.html')
 
 def about(request):
     if not request.user.is_authenticated:
