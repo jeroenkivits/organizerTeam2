@@ -1,0 +1,37 @@
+{% extends 'notes/base.html' %}
+{% block title %}Add a new node{% endblock %}
+{% block addList_active %}active{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+      <div class="col-lg-12">
+          <h1 class="page-header">Notes</h1>
+      </div>
+
+      <div class="col-lg-4">
+          <div class="panel panel-yellow">
+              <div class="panel-heading">
+                  Add a note
+              </div>
+              <div class="panel-body">
+                <div class="panel-body">
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include 'notes/form_template.html' %}
+                        <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-danger">Submit</button>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+{% endblock %}

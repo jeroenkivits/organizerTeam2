@@ -1,0 +1,46 @@
+{% extends 'finance/base.html'%}
+{% block body %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Incomes</h1>
+    </div>
+</div>
+
+<ul class="nav nav-pills" style="margin-bottom: 10px;">
+    <li role="presentation"  {% if filter_by == 'all' %}class="active"{% endif %}>
+      <a href="{% url 'finance:income' 'all' %}">
+        <span class="glyphicon glyphicon-list"></span>  All incomes
+      </a>
+    </li>
+    <li role="presentation"  {% if filter_by == 'last_week' %}class="active"{% endif %}>
+      <a href="{% url 'finance:income' 'last_week' %}">
+        <span class="glyphicon glyphicon-calendar"></span> Last week
+      </a>
+    </li>
+    <li role="presentation"  {% if filter_by == 'today' %}class="active"{% endif %}>
+      <a href="{% url 'finance:income' 'today' %}">
+        <span class="glyphicon glyphicon-time"></span> Today
+      </a>
+    </li>
+
+</ul>
+<div class='col-md-4'>
+  <div class='panel panel-default'>
+    <div class="panel-body">
+    {% if incomes %}
+    <ul>
+      {% for income in incomes%}
+      <li style="font-size:17px;">{{income.title}}: € {{income.amount}}</li>
+      <ul class="list-unstyled">
+        <li>{{income.catogory}}</li>
+        <li>{{income.date}}</li>
+      </ul>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <h3>No Incomes</h3>
+    {% endif %}
+  </div>
+</div>
+</div>
+{% endblock %}

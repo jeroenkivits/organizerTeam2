@@ -1,0 +1,31 @@
+{% load static %}
+
+<html lang="en">
+  <head>
+    <title>Login</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="https://instructure-uploads-eu.s3-eu-west-1.amazonaws.com/account_75420000000000001/attachments/4821/Favicon.png?AWSAccessKeyId=AKIAJE5F5SJN3PUW3VNQ&amp;Expires=1941679979&amp;Signature=qDUEQ5cZ9RPG34sWS3ljc0wNaCU%3D&amp;response-cache-control=Cache-Control%3Amax-age%3D473364000.0%2C%20public&amp;response-expires=473364000.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/startpage.css' %}"> <!-- My own CSS file -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    <!-- Jquery libraby -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> <!-- Bootstrap Javascript libraby -->
+  </head>
+
+  <body class="body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-offset-1 col-sm-8 col-md-offset-4 col-md-4">
+            <div class="form-login">
+              <center>
+                <h2>Logged out</h2>
+                <p>You have been successfully logged out.</p>
+                <p><a href="/todo/startpage.html">Log in again.</a></p>
+              </center>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+{% extends 'notes/base.html'%}
+{% block body %}
+<div class="row">
+  <div class="col-sm-2">
+    <div class="panel panel-default">
+      <div class="panel panel-header">
+        <h2>{{note.title}}</h2>
+      </div>
+      <h4>{{note.description}}</h4>
+      <form  action="{% url 'notes:delete_note' note.id %}" method="post">
+       <input type="hidden" name="note_id" value="{{ note.id }}" />
+       {% csrf_token %}
+       <button type="submit" class="btn btn-danger btn-sm">
+       <span class="glyphicon glyphicon-trash"></span>&nbsp; Delete
+      </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

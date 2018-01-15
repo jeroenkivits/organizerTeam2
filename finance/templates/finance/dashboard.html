@@ -1,0 +1,95 @@
+{% extends 'finance/base.html'%}
+{% block body %}
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class= "panel-body">
+        <div class="panel panel-header">
+          <h3>Balance</h3>
+        </div>
+        <div class="panel panel-header">
+        <h3 style='color:green'>+ €{{income_total}}</h3>
+        <h3 style='color:red'>- €{{expense_total}}</h3>
+        </div>
+        {% if negative %}
+        <h3 style='color:red'> - €{{balance_total}}</h3>
+        {% else %}
+        <h3 style='color:green'> + €{{balance_total}}</h3>
+          {% endif%}
+      </div>
+    </div>
+  </div>
+<div class="col-md-3" >
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="panel panel-header">
+        <h3>Incomes <small>latest</small></h3>
+        </div>
+        <ul>
+          {% for income in last_incomes%}
+          <li>{{income.title}}: € {{income.amount}}</li>
+          {% endfor %}
+        </ul>
+        <div class="panel panel-header">
+          <h3>Expenses <small>latest</small></h3>
+        </div>
+        <ul>
+        {% for expense in last_expenses%}
+        <li>{{expense.title}}: € {{expense.amount}}</li>
+        {% endfor %}
+        </ul>
+      </div>
+</div>
+</div>
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="panel panel-header">
+          <h3>Expenses per catogory</h3>
+        </div>
+        <ul>
+          <li>Food: € {% if not food_balance%} 0,00 {%else%}{{food_balance}} {% endif %}</li>
+          <li>Social: € {% if not social_balance%} 0,00 {%else%}{{social_balance}} {% endif %} </li>
+          <li>Transport: € {% if not transport_balance%} 0,00 {%else%}{{transport_balance}} {% endif %}</li>
+          <li>Household: € {% if not household_balance%} 0,00 {%else%}{{household_balance}} {% endif %}</li>
+          <li>Culture: € {% if not culture_balance%} 0,00 {%else%}{{culture_balance}} {% endif %}</li>
+          <li>Other: € {% if not other_balance%} 0,00 {%else%}{{other_balance}} {% endif %}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='col-md-4'>
+<div class='panel panel-default'
+<div id="piechart"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Food', {% if not food_balance%} 0 {%else%}{{food_balance}} {% endif %}],
+  ['Social', {% if not social_balance%} 0 {%else%}{{social_balance}} {% endif %}],
+  ['Transport', {% if not transport_balance%} 0 {%else%}{{transport_balance}} {% endif %}],
+  ['Household', {% if not household_balance%} 0 {%else%}{{household_balance}} {% endif %}],
+  ['Culture', {% if not culture_balance%} 0 {%else%}{{culture_balance}} {% endif %}],
+  ['Other', {% if not other_balance%} 0 {%else%}{{other_balance}} {% endif %} ]
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'My Expenses', 'width':400, 'height':300};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
+</div>
+</div>
+{% endblock %}

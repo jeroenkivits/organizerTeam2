@@ -1,0 +1,61 @@
+{% extends 'todo/base.html' %}
+
+{% block title %}Add a new todo{% endblock %}
+{% block addList_active %}active{% endblock %}
+
+{% block body %}
+
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Add a new todo</h1>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+              Add a new task
+            </div>
+            <div class="panel-body">
+              {% if error_message %}
+                  <p><strong>{{ error_message }}</strong></p>
+              {% endif %}
+              <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {% include 'todo/form_template.html' %}
+                  <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                          <button type="submit" class="btn btn-danger">Submit</button>
+                      </div>
+                  </div>
+              </form>
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                Requirements
+            </div>
+            <div class="panel-body">
+              <ul>
+                <li>Task name must be non-empty</li>
+                <li>Deadline must be non-empty</li>
+                <li>Deadline must be of the form: MM/DD/YYYY or empty</li>
+              </ul>
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock %}
